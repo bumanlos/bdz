@@ -1,38 +1,25 @@
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <ctime>
-#include <fcntl.h>
 
 int main() {
-    printf(" Результаты мониторинга системы успешно записаны в файл log.txt.\n");
-    // Открытие файла log.txt для записи
-    int fd = open("../files/log.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-    if (fd == -1) {
-        perror("open");
-        exit(1);
+    FILE *file;
+    char command[] = "prog1"; // команда для мониторинга prog1
+
+    file = fopen("../files/log.txt", "a"); // открываем файл для добавления данных (если файла нет, он будет создан)
+
+    if (file == NULL) {
+        printf("Ошибка открытия файла.\n");
+        return 1;
     }
 
-    // Дублирование дескриптора файлового дескриптора stdout для записи в файл
-    if (dup2(fd, STDOUT_FILENO) == -1) {
-        perror("dup2");
-        exit(1);
+    fprintf(file, "Результаты мониторинга программы prog1:\n");
+
+    // выполняем команду и записываем результат в файл
+    if (system(command) == -1) {
+        fprintf(file, "Ошибка выполнения команды.\n");
     }
 
-    // Отображение информации о системе
-    printf("System Monitoring");
-
-    // Код мониторинга системы
-    // Выведем информацию о текущем процессе и системном времени
-    int pid = getpid();
-    printf("Current process ID: %d", pid);
-    time_t current_time = time(NULL);
-    printf("Current time: %s", ctime(&current_time));
-
-    // Закрытие файла
-    close(fd);
+    fclose(file); // закрываем файл
 
     return 0;
 }
