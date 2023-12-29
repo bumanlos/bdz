@@ -39,7 +39,7 @@ void leeAlgorithm(int graph[ROWS][COLS], int startX, int startY, int endX, int e
 
             if (newX >= 0 && newX < ROWS && newY >= 0 && newY < COLS && graph[newX][newY] == 0) { // Если соседняя вершина доступна для перемещения
                 graph[newX][newY] = graph[x][y] + 1; // Устанавливаем расстояние до неё
-                queue[rear++] = nx; // Добавляем её в очередь
+                queue[rear++] = newX; // Добавляем её в очередь
                 queue[rear++] = newY;
             }
         }
