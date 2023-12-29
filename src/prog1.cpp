@@ -4,7 +4,7 @@
 #define ROWS 10
 #define COLS 10
 
-// Функция для печати графа
+// Функция для печати графа(ROWS и COLS - кол-во строк и столбцов)
 void printGraph(int graph[ROWS][COLS]) {
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
@@ -16,7 +16,7 @@ void printGraph(int graph[ROWS][COLS]) {
 
 // Функция для реализации алгоритма Ли
 void leeAlgorithm(int graph[ROWS][COLS], int startX, int startY, int endX, int endY) {
-    int queue[ROWS * COLS * 2]; // Очередь для хранения координат вершин
+    int queue[ROWS * COLS * 2]; // Очередь для хранения координат вершин(2 - кол-во столбцов для хранения координат x y)
     int front = 0, rear = 0; // Фронт и зад очереди
     int dx[] = {-1, 0, 1, 0}; // Смещения по оси x для соседних вершин
     int dy[] = {0, 1, 0, -1}; // Смещения по оси y для соседних вершин
@@ -24,7 +24,7 @@ void leeAlgorithm(int graph[ROWS][COLS], int startX, int startY, int endX, int e
     queue[rear++] = startX; // Добавляем начальную вершину в очередь
     queue[rear++] = startY;
 
-    while (front < rear) { // Пока очередь не пуста
+    while (front < rear) { // цикл обхода графа, Пока очередь не пуста
         int x = queue[front++]; // Извлекаем координаты вершины из очереди
         int y = queue[front++];
 
@@ -34,13 +34,13 @@ void leeAlgorithm(int graph[ROWS][COLS], int startX, int startY, int endX, int e
         }
 
         for (int i = 0; i < 4; i++) { // Перебираем соседние вершины
-            int nx = x + dx[i]; // Вычисляем координаты соседней вершины
-            int ny = y + dy[i];
+            int newX = x + dx[i]; // Вычисляем координаты соседней вершины
+            int newY = y + dy[i];
 
-            if (nx >= 0 && nx < ROWS && ny >= 0 && ny < COLS && graph[nx][ny] == 0) { // Если соседняя вершина доступна для перемещения
-                graph[nx][ny] = graph[x][y] + 1; // Устанавливаем расстояние до неё
+            if (newX >= 0 && newX < ROWS && newY >= 0 && newY < COLS && graph[newX][newY] == 0) { // Если соседняя вершина доступна для перемещения
+                graph[newX][newY] = graph[x][y] + 1; // Устанавливаем расстояние до неё
                 queue[rear++] = nx; // Добавляем её в очередь
-                queue[rear++] = ny;
+                queue[rear++] = newY;
             }
         }
     }
