@@ -24,18 +24,18 @@ int main() {
   printf("Текущее время: %s", ctime(&current_time)); 
  
   // Получение информации об использовании памяти 
-  struct sysinfo mem_info; 
+  struct sysinfo mem_info; //структура sysinfo для получения информации об использовании оперативной памяти
   sysinfo(&mem_info); 
   printf("Общий объем ОЗУ: %ld МБ\n", mem_info.totalram / 1024 / 1024);  
   printf("Свободная ОЗУ: %ld МБ\n", mem_info.freeram / 1024 / 1024); 
  
   // Получение информации об использовании ЦП 
-  struct rusage cpu_info; 
+  struct rusage cpu_info; //структура rusage для получения информации об использовании процессорного времени
   getrusage(RUSAGE_SELF, &cpu_info); 
   printf("Использование ЦП: %ld.%06ld секунд\n", cpu_info.ru_utime.tv_sec, cpu_info.ru_utime.tv_usec); 
  
   // Получение информации о дисковом пространстве 
-  struct statvfs disk_info; 
+  struct statvfs disk_info; //структура statvfs для получения информации о дисковом пространстве
   statvfs(".", &disk_info); 
   printf("Общий объем дискового пространства: %ld ГБ\n", (disk_info.f_blocks * disk_info.f_frsize) / 1024 / 1024 / 1024);  
   printf("Доступное дисковое пространство: %ld ГБ\n", (disk_info.f_bavail * disk_info.f_frsize) / 1024 / 1024 / 1024); 
