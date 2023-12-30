@@ -1,24 +1,25 @@
-#include <iostream>
-#include <thread>
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
 
-void thread_function(const std::string& program_name) {
-    system(program_name.c_str()); // Запускаем программу
+void *runProgram1(void *args) {
+    system("../src/prog1.cpp"); // Замените "program1.exe" на имя исполняемого файла первой программы
+    return NULL;
 }
 
-int main(int argc, char *argv[]) {
-    if (argc != 3) {
-        std::cout << "Usage: " << argv[0] << " <../src/prog1> <../src/prog2>" << std::endl;
-        return 1;
-    }
+void *runProgram2(void *args) {
+    system("../src/prog2.cpp"); // Замените "program2.exe" на имя исполняемого файла второй программы
+    return NULL;
+}
 
-    std::string program1 = argv[1]; // Путь к первой программе
-    std::string program2 = argv[2]; // Путь ко второй программе
+int main() {
+    pthread_t thread1, thread2;
 
-    std::thread thread1(thread_function, program1); // Создаем первый поток
-    std::thread thread2(thread_function, program2); // Создаем второй поток
+    pthread_create(&thread1, NULL, runProgram1, NULL);
+    pthread_create(&thread2, NULL, runProgram2, NULL);
 
-    thread1.join(); // Ждем завершения первого потока
-    thread2.join(); // Ждем завершения второго потока
+    pthread_join(thread1, NULL);
+    pthread_join(thread2, NULL);
 
     return 0;
 }
