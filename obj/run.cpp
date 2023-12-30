@@ -57,7 +57,7 @@ void leeAlgorithm(int graph[ROWS][COLS], int startX, int startY, int endX, int e
 
     printf("Кратчайший путь между вершиной (%d, %d) и вершиной (%d, %d) не найден\n", startX, startY, endX, endY);
 }
-{
+   int main() {
     int graph[ROWS][COLS] = {
         {0, 1, 0, 1, 0, 0, 0, 1, 0, 0},
         {1, 0, 1, 0, 1, 0, 0, 1, 1, 0},
