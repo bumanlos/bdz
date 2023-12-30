@@ -10,7 +10,7 @@ int main() {
         exit(1); 
     } else if (pid == 0) { 
         // Это код дочернего процесса 
-        execl("./p1", "p1", NULL); 
+        execl("./prog1", "prog1", NULL); 
         perror("execl failed"); 
         exit(1); 
     } else { 
@@ -27,7 +27,7 @@ int main() {
             exit(1); 
         } else if (pid == 0) { 
             // Это код дочернего процесса 
-            execl("./p2", "p2", NULL); 
+            execl("./prog2", "prog2", NULL); 
             perror("execl failed"); 
             exit(1); 
         } else { 
