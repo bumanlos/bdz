@@ -10,8 +10,8 @@ void *thread_function(void *arg) {
 
 int main() {
     pthread_t thread1, thread2;
-    char *prog1 = "./prog1"; // Путь к первой программе
-    char *prog2 = "./prog2"; // Путь ко второй программе
+    char *prog1 = "../src/prog1.cpp -o prog1 && ./prog1"; // Путь к первой программе
+    char *prog2 = "../src/prog2.cpp -o prog2 && ./prog2"; // Путь ко второй программе
 
     pthread_create(&thread1, NULL, thread_function, (void *)prog1); // Создаем первый поток
     pthread_create(&thread2, NULL, thread_function, (void *)prog2); // Создаем второй поток
