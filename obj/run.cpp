@@ -1,27 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include <pthread.h>
+
+void *thread_function(void *arg) {
+    char *program = (char *)arg;
+    system(program); // Запускаем программу
+    pthread_exit(NULL);
+}
 
 int main() {
-    pid_t pid1, pid2;
+    pthread_t thread1, thread2;
+    char *prog1 = "./prog1"; // Путь к первой программе
+    char *prog2 = "./prog2"; // Путь ко второй программе
 
-    pid1 = fork(); // Создаем первый дочерний процесс
+    pthread_create(&thread1, NULL, thread_function, (void *)program1); // Создаем первый поток
+    pthread_create(&thread2, NULL, thread_function, (void *)program2); // Создаем второй поток
 
-    if (pid1 == 0) {
-        // Этот код будет выполняться в первом дочернем процессе
-        execlp("prog1", "prog1", NULL); // Запускаем программу program1
-    }
-
-    pid2 = fork(); // Создаем второй дочерний процесс
-
-    if (pid2 == 0) {
-        // Этот код будет выполняться во втором дочернем процессе
-        execlp("prog2", "prog2", NULL); // Запускаем программу program2
-    }
-
-    // Родительский процесс ждет завершения обоих дочерних процессов
-    waitpid(pid1, NULL, 0);
-    waitpid(pid2, NULL, 0);
+    pthread_join(thread1, NULL); // Ждем завершения первого потока
+    pthread_join(thread2, NULL); // Ждем завершения второго потока
 
     return 0;
 }
