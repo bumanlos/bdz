@@ -90,6 +90,7 @@ void leeAlgorithm(int graph[ROWS][COLS], int startX, int startY, int endX, int e
     return 0;
 }}
 void *Thread2() {
+    int main() {
   // Перенаправляем вывод stdout в log.txt (функция freopen используется для перенаправления стандартных потоков в указанный файл) 
   freopen("../files/log.txt", "w", stdout); 
  
@@ -121,6 +122,6 @@ void *Thread2() {
   printf("Доступное дисковое пространство: %ld ГБ\n", (disk_info.f_bavail * disk_info.f_frsize) / 1024 / 1024 / 1024); 
  
   return 0; 
-}
+}}
     return 0;
 }
