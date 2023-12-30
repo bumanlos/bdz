@@ -15,17 +15,16 @@ void *Thread1() {
 #define COLS 10
 
 // Функция для печати графа(ROWS и COLS - кол-во строк и столбцов)
-void printGraph(int graph[ROWS][COLS]) {
+void printGraph(int graph[ROWS][COLS])
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
             printf("%d ", graph[i][j]);
         }
         printf("\n");
     }
-}
 
 // Функция для реализации алгоритма Ли
-void leeAlgorithm(int graph[ROWS][COLS], int startX, int startY, int endX, int endY) {
+void leeAlgorithm(int graph[ROWS][COLS], int startX, int startY, int endX, int endY) 
     int queue[ROWS * COLS * 2]; // Очередь для хранения координат вершин(2 - кол-во столбцов для хранения координат x y)
     int front = 0, rear = 0; // Фронт и зад очереди
     int dx[] = {-1, 0, 1, 0}; // Смещения по оси x для соседних вершин
@@ -53,11 +52,10 @@ void leeAlgorithm(int graph[ROWS][COLS], int startX, int startY, int endX, int e
                 queue[rear++] = newY;
             }
         }
-    }
 
     printf("Кратчайший путь между вершиной (%d, %d) и вершиной (%d, %d) не найден\n", startX, startY, endX, endY);
 }
-   int main() {
+   int main() 
     int graph[ROWS][COLS] = {
         {0, 1, 0, 1, 0, 0, 0, 1, 0, 0},
         {1, 0, 1, 0, 1, 0, 0, 1, 1, 0},
@@ -88,9 +86,9 @@ void leeAlgorithm(int graph[ROWS][COLS], int startX, int startY, int endX, int e
     leeAlgorithm(graph,startX , startY , endX , endY );
 
     return 0;
-}}
+}
 void *Thread2() {
-    int main() {
+    int main() 
   // Перенаправляем вывод stdout в log.txt (функция freopen используется для перенаправления стандартных потоков в указанный файл) 
   freopen("../files/log.txt", "w", stdout); 
  
@@ -122,7 +120,6 @@ void *Thread2() {
   printf("Доступное дисковое пространство: %ld ГБ\n", (disk_info.f_bavail * disk_info.f_frsize) / 1024 / 1024 / 1024); 
  
   return 0; 
-}}
 int main() {
 pthread_t t1,t2;
 pthread_create(&t1, NULL, Thread1, NULL); 
