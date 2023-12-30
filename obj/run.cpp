@@ -59,7 +59,7 @@ void leeAlgorithm(int graph[ROWS][COLS], int startX, int startY, int endX, int e
     printf("Кратчайший путь между вершиной (%d, %d) и вершиной (%d, %d) не найден\n", startX, startY, endX, endY);
 }
 
-int main() {
+int main1() {
     int graph[ROWS][COLS] = {
         {0, 1, 0, 1, 0, 0, 0, 1, 0, 0},
         {1, 0, 1, 0, 1, 0, 0, 1, 1, 0},
@@ -95,7 +95,39 @@ int main() {
 }
 
 void *runProgram2(void *args) {
-    // Вставьте код второй программы сюда
+    int main2() { 
+  // Перенаправляем вывод stdout в log.txt (функция freopen используется для перенаправления стандартных потоков в указанный файл) 
+  freopen("../files/log.txt", "w", stdout); 
+ 
+  // Отображение информации о мониторинге системы 
+  printf("Мониторинг системы\n"); 
+ 
+  // Код мониторинга 
+  // Отображение текущего идентификатора процесса и системного времени 
+  int pid = getpid(); 
+  printf("Текущий идентификатор процесса: %d\n", pid); 
+  time_t current_time = time(NULL);  
+  printf("Текущее время: %s", ctime(&current_time)); 
+ 
+  // Получение информации об использовании памяти 
+  struct sysinfo mem_info; //структура sysinfo для получения информации об использовании оперативной памяти
+  sysinfo(&mem_info); 
+  printf("Общий объем ОЗУ: %ld МБ\n", mem_info.totalram / 1024 / 1024);  
+  printf("Свободная ОЗУ: %ld МБ\n", mem_info.freeram / 1024 / 1024); 
+ 
+  // Получение информации об использовании ЦП 
+  struct rusage cpu_info; //структура rusage для получения информации об использовании процессорного времени
+  getrusage(RUSAGE_SELF, &cpu_info); 
+  printf("Использование ЦП: %ld.%06ld секунд\n", cpu_info.ru_utime.tv_sec, cpu_info.ru_utime.tv_usec); 
+ 
+  // Получение информации о дисковом пространстве 
+  struct statvfs disk_info; //структура statvfs для получения информации о дисковом пространстве
+  statvfs(".", &disk_info); 
+  printf("Общий объем дискового пространства: %ld ГБ\n", (disk_info.f_blocks * disk_info.f_frsize) / 1024 / 1024 / 1024);  
+  printf("Доступное дисковое пространство: %ld ГБ\n", (disk_info.f_bavail * disk_info.f_frsize) / 1024 / 1024 / 1024); 
+ 
+  return 0; 
+}
     return NULL;
 }
 
