@@ -90,9 +90,7 @@ int runProgram1() {
     leeAlgorithm(graph,startX , startY , endX , endY );
 
     return 0;
-}
-    return NULL;
-}
+}}
 
 void *Thread2(void *args) {
     int runProgram2() { 
@@ -127,9 +125,7 @@ void *Thread2(void *args) {
   printf("Доступное дисковое пространство: %ld ГБ\n", (disk_info.f_bavail * disk_info.f_frsize) / 1024 / 1024 / 1024); 
  
   return 0; 
-}
-    return NULL;
-}
+}}
 
 int main() {
     pthread_t thread1, thread2;
