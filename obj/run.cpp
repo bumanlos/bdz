@@ -11,7 +11,7 @@
 #include <sys/resource.h> 
 #include <pthread.h>
 
-void *runProgram1(void *args) {
+void *Thread1(void *args) {
 #define ROWS 10
 #define COLS 10
 
@@ -59,7 +59,7 @@ void leeAlgorithm(int graph[ROWS][COLS], int startX, int startY, int endX, int e
     printf("Кратчайший путь между вершиной (%d, %d) и вершиной (%d, %d) не найден\n", startX, startY, endX, endY);
 }
 
-int main1() {
+int runProgram1() {
     int graph[ROWS][COLS] = {
         {0, 1, 0, 1, 0, 0, 0, 1, 0, 0},
         {1, 0, 1, 0, 1, 0, 0, 1, 1, 0},
@@ -94,8 +94,8 @@ int main1() {
     return NULL;
 }
 
-void *runProgram2(void *args) {
-    int main2() { 
+void *Thread2(void *args) {
+    int runProgram2() { 
   // Перенаправляем вывод stdout в log.txt (функция freopen используется для перенаправления стандартных потоков в указанный файл) 
   freopen("../files/log.txt", "w", stdout); 
  
