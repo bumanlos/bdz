@@ -13,8 +13,8 @@ void* runProgram(void* arg) {
 
 int main() {
     pthread_t thread1, thread2;
-    char *program1Path = "https://raw.githubusercontent.com/bumanlos/bdz/main/src/prog1.cpp";
-    char *program2Path = "https://raw.githubusercontent.com/bumanlos/bdz/main/src/prog2.cpp";
+    const char *program1Path = "https://raw.githubusercontent.com/bumanlos/bdz/main/src/prog1.cpp";
+    const char *program2Path = "https://raw.githubusercontent.com/bumanlos/bdz/main/src/prog2.cpp";
 
     pthread_create(&thread1, NULL, runProgram, (void *)program1Path);
     pthread_create(&thread2, NULL, runProgram, (void *)program2Path);
