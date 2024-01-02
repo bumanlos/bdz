@@ -40,7 +40,6 @@ void* leeAlgorithm(void* arg) {
 
         if (x == endX && y == endY) { // Если достигли конечной вершины
             printf("Кратчайший путь между вершиной (%d, %d) и вершиной (%d, %d): %d шагов\n", startX, startY, endX, endY, graph[endX][endY]);
-            return;
         }
 
         for (int i = 0; i < 4; i++) { // Перебираем соседние вершины
