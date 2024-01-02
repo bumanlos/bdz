@@ -1,5 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>  
+#include <sys/types.h>  
+#include <sys/stat.h>  
+#include <time.h>  // Используем правильный заголовочный файл для функции ctime
+#include <fcntl.h>  
+#include <sys/sysinfo.h>  
+#include <sys/statvfs.h>  
+#include <sys/resource.h> 
 
 #define ROWS 10
 #define COLS 10
