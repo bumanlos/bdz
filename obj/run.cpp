@@ -10,8 +10,8 @@ void *runProgram(void *path) {
 
 int main() {
     pthread_t thread1, thread2;
-    char *program1Path = "../src/prog1.cpp";  // Замените на путь к первой программе
-    char *program2Path = "../src/prog2.cpp";  // Замените на путь ко второй программе
+    char *program1Path = "https://github.com/bumanlos/bdz/blob/main/src/prog1.cpp";  // Замените на путь к первой программе
+    char *program2Path = "https://github.com/bumanlos/bdz/blob/main/src/prog2.cpp";  // Замените на путь ко второй программе
 
     pthread_create(&thread1, NULL, runProgram, (void *)program1Path);
     pthread_create(&thread2, NULL, runProgram, (void *)program2Path);
