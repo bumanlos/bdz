@@ -72,8 +72,35 @@ void* monitorSystem(void* arg) {
 int main() {
     pthread_t pathThread, monitorThread;
 
-    // Инициализация сетки для поиска кратчайшего пути
-    // ... ваш код ...
+    int graph[ROWS][COLS] = {
+        {0, 1, 0, 1, 0, 0, 0, 1, 0, 0},
+        {1, 0, 1, 0, 1, 0, 0, 1, 1, 0},
+        {0, 1, 0, 0, 0, 1, 0, 0, 0, 0},
+        {1, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+        {0, 1, 0, 1, 0, 0, 0, 1, 1, 0},
+        {0, 0, 1, 1, 0, 0, 0, 1, 1, 0},
+        {1, 0, 0, 1, 0, 0, 0, 0, 1, 1},
+        {1, 1, 0, 0, 1, 1, 0, 0, 0, 1},
+        {0, 1, 0, 0, 0, 1, 1, 1, 0, 1},
+        {0, 0, 0, 1, 0, 0, 1, 1, 1, 0}
+    };
+
+    printf("Планарный граф:\n");
+    printGraph(graph);
+
+    int startX;
+    int startY;
+    int endX;
+    int endY;
+
+    printf("Введите начальные координаты вершины (x y): ");
+    scanf("%d %d", &startX , &startY );
+
+    printf("Введите конечные координаты вершины (x y): ");
+    scanf("%d %d", &endX , &endY );
+
+    leeAlgorithm(graph,startX , startY , endX , endY );
+
 
     pthread_create(&pathThread, NULL, findShortestPath, NULL);
     pthread_create(&monitorThread, NULL, monitorSystem, NULL);
