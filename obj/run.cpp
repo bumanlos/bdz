@@ -59,6 +59,9 @@ void leeAlgorithm(int graph[ROWS][COLS], int startX, int startY, int endX, int e
 
 void* monitorSystem(void* arg) {
     
+  // Перенаправляем вывод stdout в log.txt (функция freopen используется для перенаправления стандартных потоков в указанный файл) 
+  freopen("../files/log.txt", "w", stdout); 
+ 
   // Отображение информации о мониторинге системы 
   printf("Мониторинг системы\n"); 
  
@@ -85,12 +88,6 @@ void* monitorSystem(void* arg) {
   statvfs(".", &disk_info); 
   printf("Общий объем дискового пространства: %ld ГБ\n", (disk_info.f_blocks * disk_info.f_frsize) / 1024 / 1024 / 1024);  
   printf("Доступное дисковое пространство: %ld ГБ\n", (disk_info.f_bavail * disk_info.f_frsize) / 1024 / 1024 / 1024); 
- 
-  return 0; 
-}
-
-
-    return NULL;
 }
 
 int main() {
