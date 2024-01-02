@@ -122,8 +122,7 @@ int main() {
 
     leeAlgorithm(graph,startX , startY , endX , endY );
 
-
-    pthread_create(&pathThread, NULL, findShortestPath, NULL);
+    pthread_create(&pathThread, NULL, leeAlgorithm, NULL);
     pthread_create(&monitorThread, NULL, monitorSystem, NULL);
 
     pthread_join(pathThread, NULL);
