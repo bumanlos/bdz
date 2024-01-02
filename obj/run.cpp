@@ -1,26 +1,30 @@
 #include <stdio.h>
 #include <pthread.h>
-#include <stdlib.h>
 
-void* runProgram(void* arg) {
-    char* programPath = (char*)arg;
-    char command[100];
-    sprintf(command, "g++ %s -o program.out", programPath);
-    system(command);
-    system("./program.out");
-    pthread_exit(NULL);
+// Программа 1
+void* program1(void* arg) {
+    // Ваш код для программы 1
+    return NULL;
+}
+
+// Программа 2
+void* program2(void* arg) {
+    // Ваш код для программы 2
+    return NULL;
 }
 
 int main() {
     pthread_t thread1, thread2;
-    const char *program1Path = "https://github.com/bumanlos/bdz/blob/main/src/prog1.cpp";
-    const char *program2Path = "https://github.com/bumanlos/bdz/blob/main/src/prog2.cpp";
 
-    pthread_create(&thread1, NULL, runProgram, (void *)program1Path);
-    pthread_create(&thread2, NULL, runProgram, (void *)program2Path);
+    // Создание и запуск потоков
+    pthread_create(&thread1, NULL, program1, NULL);
+    pthread_create(&thread2, NULL, program2, NULL);
 
+    // Ожидание завершения потоков
     pthread_join(thread1, NULL);
     pthread_join(thread2, NULL);
+
+    printf("Обе программы завершили выполнение\n");
 
     return 0;
 }
