@@ -1,17 +1,20 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <pthread.h>
+#include <stdlib.h>
 
-void *runProgram(void *path) {
-    char *programPath = (char *)path;
-    system(programPath);
+void* runProgram(void* arg) {
+    char* programPath = (char*)arg;
+    char command[100];
+    sprintf(command, "g++ %s -o program.out", programPath);
+    system(command);
+    system("./program.out");
     pthread_exit(NULL);
 }
 
 int main() {
     pthread_t thread1, thread2;
-    char *program1Path = "bdz/src/prog1.cpp";  // Путь к первой программе
-    char *program2Path = "bdz/src/prog2.cpp";  // Путь ко второй программе
+    char *program1Path = "https://raw.githubusercontent.com/bumanlos/bdz/main/src/prog1.cpp";
+    char *program2Path = "https://raw.githubusercontent.com/bumanlos/bdz/main/src/prog2.cpp";
 
     pthread_create(&thread1, NULL, runProgram, (void *)program1Path);
     pthread_create(&thread2, NULL, runProgram, (void *)program2Path);
