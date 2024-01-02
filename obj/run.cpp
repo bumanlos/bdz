@@ -24,8 +24,7 @@ void printGraph(int graph[ROWS][COLS]) {
 }
 
 // Функция для реализации алгоритма Ли
-void* leeAlgorithm(void* arg) {
-    int graph[ROWS][COLS]; int startX; int startY; int endX; int endY;
+void* leeAlgorithm(void* arg)(int graph[ROWS][COLS], int startX, int startY, int endX, int endY) {
     int queue[ROWS * COLS * 2]; // Очередь для хранения координат вершин(2 - кол-во столбцов для хранения координат x y)
     int front = 0, rear = 0; // Фронт и зад очереди
     int dx[] = {-1, 0, 1, 0}; // Смещения по оси x для соседних вершин
