@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "lee.h"
+#include "../src/lee.h"
 
 // Функция для печати графа(ROWS и COLS - кол-во строк и столбцов)
 void printGraph(int graph[ROWS][COLS]) {
