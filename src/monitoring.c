@@ -30,6 +30,5 @@ void* monitoring() {
     getrusage(RUSAGE_SELF, &cpu_info); // Получение информации об использовании ЦП
     fprintf(id, "Использование ЦП: %ld.%06ld секунд\n", cpu_info.ru_utime.tv_sec, cpu_info.ru_utime.tv_usec); // Запись информации об использовании ЦП в файл
 
-    fclose(id); // Закрытие файла
-    return 0; // Возврат значения
-}
+    fclose(id); 
+    return 0; 
